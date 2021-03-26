@@ -33,6 +33,12 @@ public class CarControllerTest {
     private JdbcTemplate template;
 
     @Test
+    public void findOneThatDoesNotExist() {
+        Car car = carController.getOne(99999);
+        assertNull(car);
+    }
+
+    @Test
     public void findOneThatExists() {
         template.query("select id from car", (rs, num) -> rs.getInt("id"))
                 .forEach(id -> {
@@ -66,6 +72,21 @@ public class CarControllerTest {
 
         carController.delete(car.getId());
         assertEquals(countBefore, carDao.count());
+    }
+
+    @Test
+    public void testUpdate() {
+        Car car = new Car("Rolls Royce", "Silver Ghost", 1906);
+        car = carController.saveCar(car);
+        assertNotNull(car.getId());
+
+        car.setYear(1907);
+        carController.update(car);
+
+        Car savedCar = carController.getOne(car.getId());
+        assertEquals(1907, savedCar.getYear());
+
+        carController.delete(savedCar.getId());
     }
 
 }
