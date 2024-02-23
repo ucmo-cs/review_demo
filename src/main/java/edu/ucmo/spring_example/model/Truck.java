@@ -17,7 +17,7 @@ public class Truck {
     @Column
     private int year;
     @Column
-    private int type;
+    private enum type;
 
     public Truck(String make, String model, int year, int type) {
         this.make = make;
