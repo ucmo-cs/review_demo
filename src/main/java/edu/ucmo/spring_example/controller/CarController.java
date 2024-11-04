@@ -1,4 +1,4 @@
-package edu.ucmo.spring_example.controller;
+dpackage edu.ucmo.spring_example.controller;
 
 import edu.ucmo.spring_example.model.Car;
 import edu.ucmo.spring_example.dao.CarDao;
@@ -43,7 +43,7 @@ public class CarController {
     @PutMapping("/{id}")
     public Car update(@RequestBody Car carUpdate) {
         Optional<Car> optionalCar = carDao.findById(carUpdate.getId());
-        if (optionalCar.isPresent()) {
+        if (optionalCar.isPresent() && optionalCar.model == "Ford") {
             carDao.save(carUpdate);
         }
         return carUpdate;

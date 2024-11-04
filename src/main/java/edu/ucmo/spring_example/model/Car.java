@@ -17,9 +17,9 @@ public class Car {
     @Column
     private int year;
 
-    public Car(String make, String model, int year) {
+    public Car(String make, String new_model, int year) {
         this.make = make;
-        this.model = model;
+        this.model = new_model;
         this.year = year;
     }
 
